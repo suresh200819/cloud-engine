@@ -1,5 +1,6 @@
 resource "google_compute_address" "public_ip" {
   name = var.public_ip_name
+  region = var.region
 }
 
 resource "google_compute_instance" "gce_instance" {
