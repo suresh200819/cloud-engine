@@ -1,6 +1,6 @@
 terraform {
-  backend "local" {
-    path = "terraform.tfstate"
+  backend "gcs" {
+    bucket = "cloud-build-deployment-tfstate"
+    prefix = "env/dev"
   }
 }
-
