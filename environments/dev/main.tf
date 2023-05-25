@@ -1,4 +1,5 @@
 resource "google_compute_instance" "gce_instance" {
+  project      = "cloud-build-deployment"
   name         = var.instance_name
   machine_type = var.machine_type
   zone         = var.zone
