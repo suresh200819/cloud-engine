@@ -27,3 +27,5 @@ artifacts:
   objects:
     location: 'gs://cloud-build-deployment-tfstate/env/dev'
     paths: ['cloudbuild-tf-apply.yaml', 'tfplan']
+options:
+  logging: CLOUD_LOGGING_ONLY
