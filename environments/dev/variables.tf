@@ -18,3 +18,6 @@ variable "public_ip_name" {
   type  = string
 }
 
+variable "region" {
+  type  = string
+}
