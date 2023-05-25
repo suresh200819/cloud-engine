@@ -1,8 +1,3 @@
-resource "google_compute_address" "public_ip" {
-  name = var.public_ip_name
-  region = var.region
-}
-
 resource "google_compute_instance" "gce_instance" {
   name         = var.instance_name
   machine_type = var.machine_type
@@ -16,7 +11,6 @@ resource "google_compute_instance" "gce_instance" {
     network = "default"
   
   access_config {
-      nat_ip = google_compute_address.public_ip.address
     }
   }
 }
