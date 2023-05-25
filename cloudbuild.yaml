@@ -1,31 +1,12 @@
-
-timeout: 1200s
 steps:
-# terraform init -input=false
-- name: gcr.io/$PROJECT_ID/terraform
-  args:
-  - init
-  - -input=false
-# terraform validate
-- name: gcr.io/$PROJECT_ID/terraform
-  args:
-  - validate
-# terraform plan -input=false -out=tfplan
-- name: gcr.io/$PROJECT_ID/terraform
-  args:
-  - plan
-  - -input=false
-  - -out=tfplan
-# terraform apply -auto-approve -input=false tfplan
-- name: gcr.io/$PROJECT_ID/terraform
-  args:
-  - apply
-  - -auto-approve
-  - -input=false
-  - tfplan
-artifacts:
-  objects:
-    location: 'gs://cloud-build-deployment-tfstate/env/dev'
-    paths: ['cloudbuild-tf-apply.yaml', 'tfplan']
+  - id: 'terraform init'
+    name: 'hashicorp/terraform:1.0.0'
+    script: terraform init
+  - id: 'terraform plan'
+    name: 'hashicorp/terraform:1.0.0'
+    script: terraform plan
+  - id: 'terraform apply'
+    name: 'hashicorp/terraform:1.0.0'
+    script: terraform apply --auto-approve
 options:
   logging: CLOUD_LOGGING_ONLY
