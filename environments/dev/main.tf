@@ -9,9 +9,6 @@ resource "google_compute_instance" "gce_instance" {
   }
   network_interface {
     network = "default"
-  
-  access_config {
-    }
   }
 }
 
