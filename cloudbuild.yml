@@ -39,8 +39,9 @@ steps:
   args: 
   - '-c'
   - | 
-      if [ -d "examples/" ]; then
-        cd examples/
+      if [ -d "examples" ]; then
+        cd /examples
+        pwd
         terraform plan
       else
         for dir in environments/*/
