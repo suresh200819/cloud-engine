@@ -1,10 +1,4 @@
 # Terraform Workflow for GCP CloudBuild
-
-trigger:
-  events:
-    - push
-    - pull_request
-  branch: main
   
 steps:
 - id: 'branch name'
@@ -57,5 +51,8 @@ steps:
         cd /workspace
         if [[ "$BRANCH_NAME" == "main" ]]; then
         terraform apply -var-file="examples/terraform.tfvars" -auto-approve
+        else
+          echo "Code is not merged to the main branch. Skipping Terraform Apply"
+        fi
 options:
   logging: CLOUD_LOGGING_ONLY  
