@@ -17,6 +17,15 @@ steps:
   - |
         terraform init
         
+# [START tf-format]
+- id: 'tf format'
+  name: 'hashicorp/terraform:1.4'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+        terraform fmt
+        
 # [START tf-plan]
 - id: 'tf plan'
   name: 'hashicorp/terraform:1.4'
