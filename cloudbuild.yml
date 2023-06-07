@@ -1,4 +1,11 @@
+name: 'Terraform workflow for GCP CloudBuild'
 
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+  
 steps:
 - id: 'branch name'
   name: 'alpine'
@@ -42,6 +49,7 @@ steps:
 # [START tf-apply]
 - id: 'tf apply'
   name: 'hashicorp/terraform:1.4'
+  if: github.ref == 'refs/heads/main' && github.event_name == 'merge'
   entrypoint: 'sh'
   args: 
   - '-c'
