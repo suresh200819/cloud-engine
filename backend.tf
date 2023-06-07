@@ -1,6 +1,6 @@
 terraform {
   backend "gcs" {
     bucket = "cloud-build-deployments-tfstate"
-    prefix = "env/dev"
+    prefix = "env/build/"
   }
 }
