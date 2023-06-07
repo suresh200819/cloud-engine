@@ -24,7 +24,9 @@ steps:
   args: 
   - '-c'
   - | 
-        terraform plan -var-file="workspace/examples/terraform.tfvars"
+        cd /workspace
+        ls -R
+        terraform plan -var-file="examples/terraform.tfvars"
         
 # [END tf-plan]
 
@@ -35,6 +37,7 @@ steps:
   args: 
   - '-c'
   - | 
-        terraform apply -var-file="workspace/examples/terraform.tfvars" -auto-approve
+        cd /workspace
+        terraform apply -var-file="examples/terraform.tfvars" -auto-approve
 options:
   logging: CLOUD_LOGGING_ONLY  
