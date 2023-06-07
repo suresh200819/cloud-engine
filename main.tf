@@ -1,5 +1,5 @@
 resource "google_compute_instance" "gce_instance" {
-  project      = "cloud-build-deployment"
+  project      = "nifty-quanta-387606"
   name         = var.instance_name
   machine_type = var.machine_type
   zone         = var.zone
