@@ -49,12 +49,12 @@ steps:
 # [START tf-apply]
 - id: 'tf apply'
   name: 'hashicorp/terraform:1.4'
-  if: github.ref == 'refs/heads/main' && github.event_name == 'merge'
   entrypoint: 'sh'
   args: 
   - '-c'
   - | 
         cd /workspace
+        if [ github.ref == 'refs/heads/main' && github.event_name == 'merge' ] then
         terraform apply -var-file="examples/terraform.tfvars" -auto-approve
 options:
   logging: CLOUD_LOGGING_ONLY  
