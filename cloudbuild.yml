@@ -27,7 +27,7 @@ steps:
         pwd
         cd /workspace
         ls -R
-        terraform plan -var-file="workspace/cloud-engine/examples/terraform.tfvars"
+        terraform plan -var-file="workspace/examples/terraform.tfvars"
         
 # [END tf-plan]
 
@@ -39,6 +39,6 @@ steps:
   - '-c'
   - | 
         cd examples/     
-        terraform apply -auto-approve
+        terraform apply -var-file="workspace/examples/terraform.tfvars" -auto-approve
 options:
   logging: CLOUD_LOGGING_ONLY  
