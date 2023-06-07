@@ -27,7 +27,7 @@ steps:
         pwd
         cd /workspace
         ls -R
-        terraform plan -var-file="workspace/examples/terraform.tfvars"
+        terraform plan -var-file="examples/terraform.tfvars"
         
 # [END tf-plan]
 
