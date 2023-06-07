@@ -1,4 +1,11 @@
 # Terraform Workflow for GCP CloudBuild
+
+trigger:
+  events:
+    - push
+    - pull_request
+  branch: main
+  
 steps:
 - id: 'branch name'
   name: 'alpine'
@@ -36,7 +43,6 @@ steps:
   - | 
         cd /workspace
         ls -R
-        if [[ "$BRANCH_NAME" == "main" || $TAG_NAME" =~ ^pull/[0-9]+$ ]]; then
         terraform plan -var-file="examples/terraform.tfvars"
         
 # [END tf-plan]
@@ -49,7 +55,7 @@ steps:
   - '-c'
   - | 
         cd /workspace
-        if [[ "$BRANCH_NAME" == "main" || $TAG_NAME" =~ ^pull/[0-9]+$ ]]; then
+        if [[ "$BRANCH_NAME" == "main" ]]; then
         terraform apply -var-file="examples/terraform.tfvars" -auto-approve
 options:
   logging: CLOUD_LOGGING_ONLY  
