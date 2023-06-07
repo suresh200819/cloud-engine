@@ -16,7 +16,6 @@ steps:
   - '-c'
   - |
       if [ -d "/" ]; then
-        cd environments/dev
         terraform init
       else
         for dir in environments/*/
