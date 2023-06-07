@@ -1,11 +1,4 @@
-name: 'Terraform workflow for GCP CloudBuild'
-
-on:
-  push:
-    branches:
-    - main
-  pull_request:
-  
+# Terraform Workflow for GCP CloudBuild
 steps:
 - id: 'branch name'
   name: 'alpine'
@@ -16,6 +9,7 @@ steps:
       echo "***********************"
       echo "$BRANCH_NAME"
       echo "***********************"
+      
 - id: 'tf init'
   name: 'hashicorp/terraform:1.4'
   entrypoint: 'sh'
@@ -42,6 +36,7 @@ steps:
   - | 
         cd /workspace
         ls -R
+        if [[ "$BRANCH_NAME" == "main" || $TAG_NAME" =~ ^pull/[0-9]+$ ]]; then
         terraform plan -var-file="examples/terraform.tfvars"
         
 # [END tf-plan]
@@ -54,7 +49,7 @@ steps:
   - '-c'
   - | 
         cd /workspace
-        if [ github.ref == 'refs/heads/main' && github.event_name == 'merge' ] then
+        if [[ "$BRANCH_NAME" == "main" || $TAG_NAME" =~ ^pull/[0-9]+$ ]]; then
         terraform apply -var-file="examples/terraform.tfvars" -auto-approve
 options:
   logging: CLOUD_LOGGING_ONLY  
