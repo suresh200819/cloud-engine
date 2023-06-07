@@ -25,6 +25,8 @@ steps:
   - '-c'
   - | 
         pwd
+        cd /workspace
+        ls -R
         terraform plan -var-file="workspace/cloud-engine/examples/terraform.tfvars"
         
 # [END tf-plan]
